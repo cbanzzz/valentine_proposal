@@ -35,6 +35,12 @@ body{
   color:#ff4d6d;
   margin-bottom:12px;
 }
+.placeholder img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:10px;
+}
 button{
   padding:12px 22px;
   margin:8px;
@@ -50,7 +56,7 @@ button{
   width:8px;
   height:8px;
   top:-10px;
-  animation:fall 3s linear forwards;
+  animation:fall 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 @keyframes fall{
   to{transform:translateY(110vh) rotate(360deg);}
@@ -60,8 +66,8 @@ button{
 <body>
 
 <div class="card">
-  <div class="image1.jpeg">Photo Placeholder #1</div>
-  <div class="image2.jpeg">Photo Placeholder #2</div>
+  <div class="placeholder"><img src="image1.jpeg" alt="Photo 1"></div>
+  <div class="placeholder"><img src="image2.jpeg" alt="Photo 2"></div>
 
   <p><em>*Please click YES 3 times*</em></p>
   <h2>Will you be my Valentine, Kaliya? 💖</h2>
@@ -102,8 +108,9 @@ function confetti(){
     c.style.left = Math.random()*100 + "vw";
     c.style.backgroundColor =
       `hsl(${Math.random()*360},100%,50%)`;
+    c.style.animationDelay = (Math.random() * 0.5) + "s";
     document.body.appendChild(c);
-    setTimeout(()=>c.remove(),4000);
+    setTimeout(()=>c.remove(),4500);
   }
 }
 </script>
