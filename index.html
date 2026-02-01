@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine Proposal</title>
+<style>
+body{
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  margin:0;
+  overflow:hidden;
+}
+.card{
+  background:white;
+  padding:24px;
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.25);
+  text-align:center;
+  max-width:360px;
+  position:relative;
+}
+.placeholder{
+  width:100%;
+  height:160px;
+  background:#ffe5ec;
+  border:2px dashed #ff4d6d;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#ff4d6d;
+  margin-bottom:12px;
+}
+button{
+  padding:12px 22px;
+  margin:8px;
+  border:none;
+  border-radius:25px;
+  font-size:16px;
+  cursor:pointer;
+}
+.yes{background:#ff4d6d;color:white;}
+.no{background:#ddd;}
+.confetti{
+  position:absolute;
+  width:8px;
+  height:8px;
+  top:-10px;
+  animation:fall 3s linear forwards;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);}
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="placeholder">Photo Placeholder #1</div>
+  <div class="placeholder">Photo Placeholder #2</div>
+
+  <p><em>*Please click YES 3 times*</em></p>
+  <h2>Will you be my Valentine, Kaliya? 💖</h2>
+
+  <div id="buttons">
+    <button class="yes" onclick="yesClick()">Yes</button>
+    <button class="no" onclick="noClick()">No</button>
+  </div>
+
+  <p id="response"></p>
+</div>
+
+<script>
+let count = 0;
+
+function yesClick(){
+  count++;
+  document.getElementById("response").innerText =
+    `Yes clicked ${count} time(s) ❤️`;
+
+  if(count === 3){
+    document.getElementById("buttons").style.display = "none";
+    document.getElementById("response").innerText =
+      "She said YES 💘 Happy Valentine’s Day!";
+    confetti();
+  }
+}
+
+function noClick(){
+  document.getElementById("response").innerText =
+    "Nice try… click Yes 😌";
+}
+
+function confetti(){
+  for(let i=0;i<80;i++){
+    let c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random()*100 + "vw";
+    c.style.backgroundColor =
+      `hsl(${Math.random()*360},100%,50%)`;
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),4000);
+  }
+}
+</script>
+
+</body>
+</html>
